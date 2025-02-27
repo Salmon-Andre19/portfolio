@@ -3,9 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-   
     <title>Porto Tailwind CSS</title>
     <link href="dist/output.css" rel="stylesheet" />
+    <script>
+      document.documentElement.classList.toggle(
+      "dark",
+      localStorage.theme === "dark" ||
+        (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches),
+      );
+    </script>
   </head>
   <body>
     <!-- Header Start -->
@@ -81,18 +87,18 @@
                   >
                 </li>
                 <!-- coba dark mode -->
-                <!-- <li class="flex item-center">
-                  <div class="flex items-center">
-                    <span class="mr-2 text-sm text-slate-500">light</span>
+                <li class="flex item-center group">
+                  <div class="flex items-center mx-8 lg:mx-0">
+                    <span class="mr-2 text-sm text-slate-500">🌝</span>
                     <input type="checkbox" class="hidden" id="dark-toggle" />
                     <label for="dark-toggle">
                       <div class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1">
                         <div class="toggle-circle h-4 w-4 rounded-full bg-white transition duration-300 ease-in-out"></div>
                       </div>
                     </label>
-                    <span class="ml-2 text-sm text-slate-500">dark</span>
+                    <span class="ml-2 text-sm text-slate-500">🌚</span>
                   </div>
-                </li> -->
+                </li>
               </ul>
             </nav>
           </div>
@@ -300,7 +306,7 @@
               class="mx-4 max-w-[150px] py-4 opacity-60 grayscale transition duration-500 hover:opacity-100 hover:grayscale-0 lg:mx-6 xl:mx-8"
             >
               <img
-                src="dist/img/keahlian/HTML5.svg"
+                src="dist/img/keahlian/html5.svg"
                 alt="HTML"
                 class="h-[120px] w-[120px]"
               />

@@ -1,5 +1,5 @@
 @import "tailwindcss";
-
+@config "../tailwind.config.js";
 @theme {
   --font-sans: "Inter", sans-serif;
   --breakpoint-xl: 82.5rem;
@@ -42,6 +42,6 @@ body {
   @apply -rotate-45;
 }
 
-/* #dark-toggle:checked ~ label div.toggle-circle {
+#dark-toggle:checked ~ label div.toggle-circle {
   @apply translate-x-3;
-} */
+}
