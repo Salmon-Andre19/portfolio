@@ -38,17 +38,54 @@ const html = document.querySelector("html");
 darkToggle.addEventListener("click", function () {
   if (darkToggle.checked) {
     html.classList.add("dark");
-    localStorage.theme = 'dark';
+    localStorage.theme = "dark";
   } else {
     html.classList.remove("dark");
-    localStorage.theme = 'light';
+    localStorage.theme = "light";
   }
 });
 
-
 // pindahkan posisi toggle sesuai mode
-if (localStorage.theme === "dark" || (!("theme" in localStorage) && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+if (
+  localStorage.theme === "dark" ||
+  (!("theme" in localStorage) &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches)
+) {
   darkToggle.checked = true;
 } else {
   darkToggle.cheked = false;
-};
+}
+
+// Alert sukses close
+const alertCLose = document.querySelector(".alert-del");
+
+alertCLose.addEventListener("click", function () {
+  alertCLose.parentElement.classList.add("hidden");
+});
+
+// contact from
+const scriptURL =
+  "https://script.google.com/macros/s/AKfycbzmAJ3sVmXFC-rcIY7J3m2zTNdjRah8-C-VWeoDUHt3jUTkXbFXuxSJczCk94URLzhg/exec";
+const form = document.forms["salmon-contact-form"];
+const buttonKirim = document.querySelector(".button-kirim");
+const buttonLoading = document.querySelector(".button-loading");
+const alertSukses = document.querySelector(".alert-sukses");
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // tampilkan tombol loading
+  // hilangkan tombol kirim
+  buttonLoading.classList.toggle("hidden");
+  buttonKirim.classList.toggle("hidden");
+  fetch(scriptURL, { method: "POST", body: new FormData(form) })
+    .then((response) => {
+      // tampilkan tombol kirim hilangkan tombol loading
+      buttonLoading.classList.toggle("hidden");
+      buttonKirim.classList.toggle("hidden");
+      alertSukses.classList.toggle("hidden");
+      alertSukses.classList.add("flex");
+      form.reset();
+      console.log("Success!", response);
+    })
+    .catch((error) => console.error("Error!", error.message));
+});
